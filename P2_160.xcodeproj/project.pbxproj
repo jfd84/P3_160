@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A537336928D9F93D00631F36 /* ChainTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A537336828D9F93D00631F36 /* ChainTable.cpp */; };
+		A537336D28DB508A00631F36 /* Bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A537336C28DB508A00631F36 /* Bucket.cpp */; };
 		A5ED04CE28D892E50092998A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5ED04CD28D892E50092998A /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +25,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A537336728D9F92F00631F36 /* ChainTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChainTable.h; sourceTree = "<group>"; };
+		A537336828D9F93D00631F36 /* ChainTable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ChainTable.cpp; sourceTree = "<group>"; };
+		A537336A28DB3F1500631F36 /* dictionaryFileTEST.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dictionaryFileTEST.txt; sourceTree = "<group>"; };
+		A537336B28DB508A00631F36 /* Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bucket.h; sourceTree = "<group>"; };
+		A537336C28DB508A00631F36 /* Bucket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bucket.cpp; sourceTree = "<group>"; };
 		A5ED04CA28D892E50092998A /* P2_160 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = P2_160; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5ED04CD28D892E50092998A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A5ED04E128D896CB0092998A /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		A5ED04E528D89AFA0092998A /* dictionaryFileSimple.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dictionaryFileSimple.txt; sourceTree = "<group>"; };
+		A5ED04E628D89AFA0092998A /* dictionaryFile1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dictionaryFile1.txt; sourceTree = "<group>"; };
+		A5ED04E728D89AFB0092998A /* dictionaryFile2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = dictionaryFile2.txt; sourceTree = "<group>"; };
+		A5ED04E828D89AFB0092998A /* inputFile1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = inputFile1.txt; sourceTree = "<group>"; };
+		A5ED04E928D89AFB0092998A /* inputFileSimple.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = inputFileSimple.txt; sourceTree = "<group>"; };
+		A5ED04EA28D89AFB0092998A /* inputFile2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = inputFile2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +72,18 @@
 			isa = PBXGroup;
 			children = (
 				A5ED04CD28D892E50092998A /* main.cpp */,
+				A537336828D9F93D00631F36 /* ChainTable.cpp */,
+				A537336728D9F92F00631F36 /* ChainTable.h */,
+				A537336C28DB508A00631F36 /* Bucket.cpp */,
+				A537336B28DB508A00631F36 /* Bucket.h */,
+				A5ED04E128D896CB0092998A /* Node.h */,
+				A5ED04E628D89AFA0092998A /* dictionaryFile1.txt */,
+				A5ED04E728D89AFB0092998A /* dictionaryFile2.txt */,
+				A537336A28DB3F1500631F36 /* dictionaryFileTEST.txt */,
+				A5ED04E528D89AFA0092998A /* dictionaryFileSimple.txt */,
+				A5ED04E828D89AFB0092998A /* inputFile1.txt */,
+				A5ED04EA28D89AFB0092998A /* inputFile2.txt */,
+				A5ED04E928D89AFB0092998A /* inputFileSimple.txt */,
 			);
 			path = P2_160;
 			sourceTree = "<group>";
@@ -119,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A537336928D9F93D00631F36 /* ChainTable.cpp in Sources */,
+				A537336D28DB508A00631F36 /* Bucket.cpp in Sources */,
 				A5ED04CE28D892E50092998A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
