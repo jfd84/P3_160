@@ -15,14 +15,16 @@ ChainTable::ChainTable(unsigned int dictSize)
     arr = new Bucket[size];
 }
 
-unsigned int ChainTable::getKey(string &word)
+unsigned int ChainTable::getKey(const string &word)
 {
     unsigned int key = 0;
-    unsigned int wordLen = word.length();
+    short wordLen = word.length();
     
-    for(unsigned int i = 0; i < wordLen; ++i)
+    //for (char i = word.begin(); i != )
+    
+    for(short i = 0; i < wordLen; ++i)
     {
-        key = 37 * key + int(word[i]);
+        key = 37 * key + short(word[i]);
     }
     return key % size;
 }
@@ -37,16 +39,22 @@ long ChainTable::loadTable(string fileName)
     string tempWord;
     unsigned int key = 0;
     
-    auto start = chrono::steady_clock::now();  //START
-    
+    //auto start = chrono::high_resolution_clock::now();  //START
+    chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
     while (inFile >> tempWord)
     {
         key = getKey(tempWord);
         arr[key].add(tempWord);
     }
+    chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
     
-    auto end = chrono::steady_clock::now();  //END
-    long time = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+    //auto end = chrono::high_resolution_clock::now();  //END
+    //chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(t2 - t1);
+    
+    long time = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
+
+    //long time = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+    
     //Closes stream
     inFile.close();
     return time;

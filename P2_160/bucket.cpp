@@ -55,13 +55,15 @@ void Bucket::add(string &word)
         ++size;
         return;
     }
-    Node *newNode = new Node(word);
+    //Node *newNode = new Node(word);
     
-    current->next = newNode;
-    current = newNode;
+    //current->next = newNode;
+    current->next = new Node(word);
+    current = current->next;
+    //current = newNode;
     
     ++size;
-    delete newNode;
+    //delete newNode;
 }
 
 void Bucket::print() const

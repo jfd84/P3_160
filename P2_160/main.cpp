@@ -21,7 +21,8 @@ int main(int argc, const char * argv[]) {
     if (argv[1] == NULL) {
         cout << "NO FILE PATH PASSED WHEN CALLING EXECUTABLE" << endl;
         cout << "Please enter file path: ";
-        cin >> dictName;
+        //cin >> dictName;
+        dictName = "/Users/jfd/Desktop/COSC_160/P2_160/P2_160/dictionaryFile1.txt";
         cout << endl;
     }
     else {
