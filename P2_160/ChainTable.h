@@ -21,7 +21,7 @@ public:
     //Creates an array with the size specified in the first line of the file
     ChainTable(unsigned int dictSize);
     
-    unsigned int getKey(string word);
+    unsigned int getKey(string &word);
     
     //Creates an instance of fstream to read file data and fill the table
     long loadTable(string fileName);

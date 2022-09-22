@@ -11,21 +11,20 @@
 
 ChainTable::ChainTable(unsigned int dictSize)
 {
-    //time = 0;
-    //totalTrans = 0;
     size = dictSize;
+    arr = new Bucket[size];
 }
 
-unsigned int ChainTable::getKey(string word)
+unsigned int ChainTable::getKey(string &word)
 {
     unsigned int key = 0;
+    unsigned int wordLen = word.length();
     
-    for(unsigned int i = 0; i < word.length(); ++i)
+    for(unsigned int i = 0; i < wordLen; ++i)
     {
-        key = 37 * key + int(word.at(i));
+        key = 37 * key + int(word[i]);
     }
-    key = key % size;
-    return key;
+    return key % size;
 }
 
 
@@ -36,19 +35,17 @@ long ChainTable::loadTable(string fileName)
     ifstream inFile;
     inFile.open(fileName.c_str());
     string tempWord;
-    unsigned int testKey = 0;
+    unsigned int key = 0;
     
     auto start = chrono::steady_clock::now();  //START
     
-    arr = new Bucket[size];
     while (inFile >> tempWord)
     {
-        testKey = getKey(tempWord);
-        arr[testKey].add(tempWord);
+        key = getKey(tempWord);
+        arr[key].add(tempWord);
     }
     
     auto end = chrono::steady_clock::now();  //END
-    
     long time = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
     //Closes stream
     inFile.close();

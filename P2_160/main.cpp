@@ -43,8 +43,10 @@ int main(int argc, const char * argv[]) {
     inFile.close();
     
     
-    //Multiplies dictSize by 1.33 and rounds up, to ensure that the load is not >0.75
-    dictSize = ceil(dictSize * 1.3);
+    //Multiplies dictSize by 1.33 and rounds up, to ensure that the load is not < 0.75
+    dictSize = ceil(dictSize * 1.33);
+    //Makes sure that dictSize is not an even number
+    if (dictSize % 2 != 0) { ++dictSize; }
     
     //Creates "chain" an instance of the ChainTable class
     ChainTable chain(dictSize);

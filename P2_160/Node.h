@@ -16,6 +16,7 @@ using namespace std;
 class Node {
 public:
     Node();
+    Node(string &word);
     Node* next;
     string word;
 };

@@ -14,6 +14,11 @@ Node::Node()
     word = "";
     next = NULL;
 }
+Node::Node(string &str)
+{
+    word = str;
+    next = NULL;
+}
 
 //END implementation of Node class
 
@@ -43,30 +48,27 @@ Bucket::~Bucket()
     size = 0;
 }
 
-void Bucket::add(string word)
+void Bucket::add(string &word)
 {
     if (size == 0){
         header->word = word;
         ++size;
         return;
     }
-    Node *newNode = new Node();
-    newNode->word = word;
+    Node *newNode = new Node(word);
     
     current->next = newNode;
     current = newNode;
     
     ++size;
+    delete newNode;
 }
 
 void Bucket::print() const
 {
-    Node *tmp = new Node;
+    Node *tmp = new Node();
     tmp = header;
-    if (size == 0)
-    {
-        return;
-    }
+    if (size == 0) { return; }
     for (unsigned int i = 0; i < size; i++)
     {
         cout << tmp->word << ", ";

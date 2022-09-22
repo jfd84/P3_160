@@ -19,7 +19,7 @@ public:
     Bucket();
     virtual ~Bucket();
     
-    void add(string word);
+    void add(string &str);
     
     void print() const;
     
