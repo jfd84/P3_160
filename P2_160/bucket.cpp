@@ -5,7 +5,6 @@
 //  Created by Joe D'Agostino on 9/19/22.
 //
 
-#include <stdio.h>
 #include "Bucket.h"
 
 //BEGIN implementation of Node class

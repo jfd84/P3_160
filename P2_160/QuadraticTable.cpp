@@ -1,39 +1,40 @@
 //
-//  ChainTable.cpp
-//  P2_160
-//
-//  Created by Joe D'Agostino on 9/20/22.
+// Created by Joe D'Agostino on 9/23/22.
 //
 
-#include "ChainTable.h"
+#include "QuadraticTable.h"
 
-ChainTable::ChainTable(unsigned int dSize, unsigned int iSize)
+QuadraticTable::QuadraticTable(unsigned int dSize, unsigned int iSize)
 {
     dictSize = dSize;
     inputSize = iSize;
-    arr = new Bucket[dSize];
+    arr = new string[dSize];
     inputDuration = 0;
 }
 
-unsigned int ChainTable::getKey(const string &word) const
+unsigned int QuadraticTable::getKey(const string &word) const
 {
     unsigned int key = 0;
-    for (char i : word) { key = 37 * (key + short(i)); }
+    for (char i:word) { key = 37 * (key + short(i)); }
     return key % dictSize;
 }
 
-//Uses an instance of ifstream to read file data and fill the array
-long ChainTable::loadTable(const string& fileName) const
-{
+long QuadraticTable::loadTable(string fileName) {
     ifstream inFile;
     inFile.open(fileName.c_str());
     string tempWord;
     unsigned int key;
+    unsigned int thisProbe;
     chrono::high_resolution_clock::time_point start = chrono::high_resolution_clock::now(); //START
-    while(inFile >> tempWord)
+    while (inFile >> tempWord)
     {
         key = getKey(tempWord);
-        arr[key].add(tempWord);
+        thisProbe = 1;
+        while (arr[key].size() != 0) {
+            key = int(key + pow(thisProbe, 2)) % dictSize;
+            ++thisProbe;
+        }
+        arr[key] = tempWord;
     }
     chrono::high_resolution_clock::time_point stop = chrono::high_resolution_clock::now(); //STOP
     long time = chrono::duration_cast<chrono::nanoseconds>(stop - start).count();
@@ -41,15 +42,12 @@ long ChainTable::loadTable(const string& fileName) const
     inFile.close();
     return time;
 }
-
-unsigned int ChainTable::readInput(const string& fileName)
+unsigned int QuadraticTable::readInput(string fileName)
 {
-
     ifstream inFile;
     inFile.open(fileName.c_str());
     string tempWord;
     string tempArray[inputSize];
-
     int splitIndex;
     int doubleIndex;
     string splitWord1;
@@ -104,20 +102,16 @@ unsigned int ChainTable::readInput(const string& fileName)
             i += 2;
         }
         else {
-            if (tempWord.empty()) { continue; }
             if (isdigit(tempWord.front())) { continue; }
             tempArray[i] = tempWord;
             ++i;
         }
     }
-    cout << "ACTUAL SIZE: " << i << endl;
     inFile.close();
 
     //Creates variables necessary for operations in the proceeding while loop
     string thisWord;
     unsigned int testKey;
-    unsigned int bucketSize;
-    Node *thisNode;
     unsigned int numIncorrect = 0;
     bool found;
     //Parses through each word in the file, and check if it exists in the hash table
@@ -126,20 +120,20 @@ unsigned int ChainTable::readInput(const string& fileName)
     {
         if (tempArray[i].empty()) { continue; }
         thisWord = tempArray[i];
-
         //If the word is spelled correctly, the key should reveal the index of the hashTable
         testKey = getKey(thisWord);
-        thisNode = arr[testKey].header;
-        bucketSize = arr[testKey].size;
         found = false;
-        for (unsigned int w = 0; w < bucketSize; ++w)
+        unsigned int thisProbe = 0;
+
+        while(!arr[testKey].empty())
         {
-            if (thisWord == thisNode->word)
+            if (thisWord == arr[testKey])
             {
                 found = true;
                 break;
             }
-            thisNode = thisNode->next;
+            testKey = int(testKey + pow(thisProbe, 2)) % dictSize;
+            ++thisProbe;
         }
         if (!found) { ++numIncorrect; }
     }
@@ -151,27 +145,25 @@ unsigned int ChainTable::readInput(const string& fileName)
 }
 
 //Iterates through array, prints each element
-void ChainTable::print()
+void QuadraticTable::print()
 {
     for (unsigned int i = 0; i < dictSize; ++i)
     {
-        cout << "#" << i << ": " << arr[i].size << "  ****  ";
-        arr[i].print();
-        cout << endl;
+        cout << "#" << i << ": " << arr[i] << endl;
     }
     cout << endl << endl;
 }
 
 //Iterates through array, prints the number of empty buckets (for analysis of hash function)
-void ChainTable::numEmpty()
+void QuadraticTable::numEmpty()
 {
     unsigned int numEmpty = 0;
     for (unsigned int i = 0; i < dictSize; ++i)
     {
-        if (arr[i].size == 0)
+        if (arr[i].size() == 0)
         {
             ++numEmpty;
         }
     }
-    cout << "Number of Empty Buckets: " << numEmpty << " out of " << dictSize << endl << endl;
+    cout << "Number of Empty Strings: " << numEmpty << " out of " << dictSize << endl << endl;
 }

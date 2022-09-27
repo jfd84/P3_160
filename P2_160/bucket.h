@@ -8,7 +8,7 @@
 #ifndef Bucket_h
 #define Bucket_h
 
-#include <stdio.h>
+#include <cstdio>
 #include "Node.h"
 #include <iostream>
 
